@@ -29,4 +29,3 @@ class Zona:
 
     def setAnimales(self, animales):
         _animales = animales
-         
