@@ -2,22 +2,51 @@ from animal import Animal
 
 class Reptil(Animal):
 
-  def __init__(self,nombre,edad,habitat,genero,zona,listado,iguanas,serpientes,colorEscamas,largoCola):
-     super().__init__(nombre,edad,habitat,genero,zona)
-     self._listado = listado
-     self._iguanas = iguanas
-     self._serpientes = serpientes
-     self._colorEscamas = colorEscamas
-     self._largoCola = largoCola
+    _listado = []
+    iguanas = 0
+    serpientes = 0
     
-  def cantidadReptiles():
-      return ""
+    def __init__(self, nombre, edad, habitat, genero, colorEscamas, largoCola):
+        super().__init__(nombre, edad, habitat, genero)
+        self.setColorEscamas(colorEscamas)
+        self.setLargoCola(largoCola)
+        Reptil._listado.append(self)
 
-  def movimiento():
-      return ""
+    @classmethod
+    def cantidadReptiles(cls):
+        return len(cls._listado)
 
-  def crearIguana():
-      return ""
+    def movimiento(self):
+        return "reptar"
 
-  def crearSerpiente():
-      return ""
+    @classmethod
+    def crearIguana(cls, nombre_nuevo, edad_nueva, genero_nuevo):
+        iguana = Reptil(nombre_nuevo, edad_nueva, "humedal", genero_nuevo, "verde", 3)
+        cls.iguanas += 1
+        return iguana
+
+    @classmethod
+    def crearSerpiente(cls, nombre_nuevo, edad_nueva, genero_nuevo):
+        serpiente = Reptil(nombre_nuevo, edad_nueva, "jungla", genero_nuevo, "blanco", 1)
+        cls.serpientes += 1
+        return serpiente
+
+    def getColorEscamas(self):
+        return self._colorEscamas
+
+    def setColorEscamas(self, colorEscamas):
+        self._colorEscamas = colorEscamas
+
+    def getLargoCola(self):
+        return self._largoCola
+
+    def setLargoCola(self, largoCola):
+        self._largoCola = largoCola
+
+    @classmethod
+    def getListado(cls):
+        return cls._listado
+
+    @classmethod
+    def setListado(cls, listado):
+        cls._listado = listado
